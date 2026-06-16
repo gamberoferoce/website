@@ -16,8 +16,8 @@
 
 .wrapper {
   width: 100%;
-  padding: 4rem 0;
-  font-size: clamp(1.25rem, 4vw, 2.5rem);
+  padding: 6rem 0;
+  font-family: var(--font-sans);
   color: var(--foreground);
 }
 
@@ -35,7 +35,7 @@
 }
 
 .marquee + .marquee {
-  margin-top: 0.75rem;
+  margin-top: 1.5rem;
 }
 
 .track {
@@ -56,17 +56,22 @@
   display: inline-flex;
   flex-shrink: 0;
   align-items: center;
-  padding: 0.45rem 1.35rem;
+  padding: 0.75rem 2.5rem;
   color: var(--foreground);
-  font-size: 0.85em;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-family: inherit;
+  font-size: 36px;
+  line-height: 1.15;
+  font-weight: 400;
+  letter-spacing: normal;
   white-space: nowrap;
 }
 
 .tapeLime {
-  --tape-color: #c1eb4d;
+  --tape-color: #a8cf38;
+}
+
+.tapeLime .trackGroup span {
+  color: #ffffff;
 }
 
 .tapeNeutral {
@@ -74,8 +79,8 @@
 }
 
 .tapeNeutral .trackGroup {
-  border-top: 1px solid var(--nav-link-color);
-  border-bottom: 1px solid var(--nav-link-color);
+  border-top: 2px solid var(--nav-link-color);
+  border-bottom: 2px solid var(--nav-link-color);
 }
 
 .tapeNeutral .trackGroup span {
@@ -94,12 +99,12 @@
 
 @media (max-width: 768px) {
   .wrapper {
-    font-size: 1rem;
-    padding: 3rem 0;
+    padding: 4rem 0;
   }
 
   .trackGroup span {
-    padding: 0.35rem 1rem;
-    letter-spacing: 0.08em;
+    padding: 0.6rem 1.75rem;
+    font-size: 28px;
+    line-height: 1.2;
   }
 }

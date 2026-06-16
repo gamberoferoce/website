@@ -13,9 +13,7 @@ export function ContactNavLink({ isActive }: ContactNavLinkProps) {
       className={`${styles.contactLink} ${isActive ? styles.active : ""}`}
       href="/contact"
     >
-      <span className={styles.inner}>
-        <span className={styles.label}>Contact</span>
-      </span>
+      <span className={styles.label}>Contact</span>
     </Link>
   );
 }

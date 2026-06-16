@@ -25,8 +25,8 @@ export default function BlogPage() {
       <SiteNav />
 
       <div className="space-y-3 pt-16 md:pt-20">
-        <h1 className="text-[13px] font-semibold leading-5 text-foreground/90">Blog</h1>
-        <ul className="space-y-2 text-[12px] text-foreground/90">
+        <h1 className="text-[15px] font-semibold leading-5 text-foreground/90">Blog</h1>
+        <ul className="space-y-2 text-[14px] text-foreground/90">
           {posts.map((post) => (
             <li key={`${post.date}-${post.title}`} className="flex gap-3">
               <span className="w-[72px] shrink-0 tabular-nums text-muted-foreground">{post.date}</span>

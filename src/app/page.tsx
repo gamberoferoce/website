@@ -70,12 +70,12 @@ export default function Home() {
         <header className="space-y-2 pt-16 md:pt-20">
           <div className="h-8 w-8 rounded-[6px] bg-gradient-to-br from-sky-400 to-blue-700 shadow-sm" />
           <div className="space-y-0.5">
-            <h1 className="text-[15px] font-bold leading-5">Giulia Fanasca</h1>
-            <h2 className="text-[13px] leading-5 text-muted-foreground">Creative Technologist</h2>
+            <h1 className="text-[17px] font-bold leading-5">Giulia Fanasca</h1>
+            <h2 className="text-[15px] leading-5 text-muted-foreground">Creative Technologist</h2>
           </div>
         </header>
 
-        <section className="space-y-5 text-[12px] leading-6 text-foreground/80">
+        <section className="space-y-5 text-[14px] leading-6 text-foreground/80">
           <p>
             I&apos;m working at{" "}
             <a className="text-blue-600 underline underline-offset-4" href="#">
@@ -121,8 +121,8 @@ export default function Home() {
         </section>
 
         <section className="space-y-3 pt-8">
-          <h3 className="text-[11px] font-semibold text-foreground/90">Selected Writing</h3>
-          <ul className="space-y-2 text-[12px] text-foreground/90">
+          <h3 className="text-[13px] font-semibold text-foreground/90">Selected Writing</h3>
+          <ul className="space-y-2 text-[14px] text-foreground/90">
             {selectedWriting.map((item) => (
               <li key={`${item.date}-${item.title}`} className="flex gap-3">
                 <span className="w-[72px] shrink-0 tabular-nums text-muted-foreground">{item.date}</span>
@@ -135,18 +135,18 @@ export default function Home() {
         </section>
 
         <section className="space-y-4 pt-10">
-          <h3 className="text-[11px] font-semibold text-foreground/90">Selected Projects</h3>
+          <h3 className="text-[13px] font-semibold text-foreground/90">Selected Projects</h3>
           <div className="space-y-6">
             {selectedProjects.map((p) => (
               <div key={p.name} className="space-y-1">
-                <h4 className="text-[12px] font-semibold text-foreground/90">{p.name}</h4>
-                <p className="text-[12px] leading-6 text-foreground/80">{p.description}</p>
+                <h4 className="text-[14px] font-semibold text-foreground/90">{p.name}</h4>
+                <p className="text-[14px] leading-6 text-foreground/80">{p.description}</p>
               </div>
             ))}
           </div>
         </section>
 
-        <footer className="space-y-1 pt-6 text-[13px] text-muted-foreground">
+        <footer className="space-y-1 pt-6 text-[15px] text-muted-foreground">
           <p>
             <a className="underline underline-offset-4" href="mailto:giuliafanasca@gmail.com">
               giuliafanasca@gmail.com

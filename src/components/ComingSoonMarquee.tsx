@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 import styles from "./ComingSoonMarquee.module.css";
 
-const LABEL = "Coming Soon";
-const SEGMENT_WIDTH_ESTIMATE = 152;
+const LABEL = "Coming soon";
+const SEGMENT_WIDTH_ESTIMATE = 300;
 
 function MarqueeTrack({
   direction = "forwards",
