@@ -2,8 +2,8 @@ import Link from "next/link";
 import { PageTitle } from "@/components/PageTitle";
 import { SitePage } from "@/components/SitePage";
 import { SiteNav } from "@/components/SiteNav";
+import { textLinkClass } from "@/lib/interactive";
 import { getPostHref, posts } from "@/lib/posts";
-
 export default function BlogPage() {
   return (
     <SitePage>
@@ -21,7 +21,7 @@ export default function BlogPage() {
                 <span className="absolute top-0 right-full mr-3 shrink-0 font-bold uppercase">NEW</span>
               ) : null}
               <span className="w-[88px] shrink-0 tabular-nums text-muted-foreground">{post.date}</span>
-              <Link className="underline underline-offset-4" href={getPostHref(post)}>
+              <Link className={textLinkClass} href={getPostHref(post)}>
                 {post.title}
               </Link>
             </li>

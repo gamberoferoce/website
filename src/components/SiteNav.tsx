@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ContactNavLink } from "@/components/ContactNavLink";
+import { headerNavLinkClass } from "@/lib/interactive";
+import { cn } from "@/lib/utils";
 
 const navItems = [
   { label: "Projects", href: "/projects" },
@@ -25,22 +27,15 @@ export function SiteNav() {
         </Link>
 
         <div className={`flex items-center gap-3.5 ${navTextClass}`}>
-          {navItems.map((item) => {
-            const isActive = pathname === item.href;
-            return (
+          {navItems.map((item) => (
               <Link
                 key={item.href}
-                className={[
-                  navTextClass,
-                  "underline underline-offset-4",
-                  isActive ? "decoration-current" : "decoration-transparent hover:decoration-current",
-                ].join(" ")}
+                className={cn(navTextClass, headerNavLinkClass)}
                 href={item.href}
               >
                 {item.label}
               </Link>
-            );
-          })}
+            ))}
           <ContactNavLink isActive={pathname === "/contact"} />
         </div>
       </div>

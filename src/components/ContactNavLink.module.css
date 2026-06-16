@@ -19,9 +19,8 @@
 .label {
   position: relative;
   font-weight: 400;
-  text-decoration: underline;
+  text-decoration: none;
   text-underline-offset: 4px;
-  text-decoration-color: transparent;
 }
 
 .contactLink:hover .label {
@@ -56,8 +55,4 @@
 
 .contactLink:not(:hover) .label::after {
   content: none;
-}
-
-.active .label {
-  text-decoration-color: currentcolor;
 }

@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { SitePage } from "@/components/SitePage";
 import { SiteNav } from "@/components/SiteNav";
+import { accentTextLinkClass, textLinkClass } from "@/lib/interactive";
 import { getPostHref, posts } from "@/lib/posts";
-
 export default function Home() {
-  const selectedWriting = posts;
+  const latestPosts = posts.slice(0, 4);
 
   return (
     <SitePage>
@@ -45,7 +45,7 @@ export default function Home() {
 
             I&apos;m working at{" "}
 
-            <a className="text-blue-600 underline underline-offset-4" href="#">
+            <a className={accentTextLinkClass} href="#">
 
               Trenda
 
@@ -53,7 +53,7 @@ export default function Home() {
 
             as a senior fullstack developer, bringing over 15 years of experience building applications with{" "}
 
-            <a className="text-blue-600 underline underline-offset-4" href="#">
+            <a className={accentTextLinkClass} href="#">
 
               PHP
 
@@ -61,7 +61,7 @@ export default function Home() {
 
             ,{" "}
 
-            <a className="text-blue-600 underline underline-offset-4" href="#">
+            <a className={accentTextLinkClass} href="#">
 
               Laravel
 
@@ -69,7 +69,7 @@ export default function Home() {
 
             ,{" "}
 
-            <a className="text-blue-600 underline underline-offset-4" href="#">
+            <a className={accentTextLinkClass} href="#">
 
               Livewire
 
@@ -77,7 +77,7 @@ export default function Home() {
 
             ,{" "}
 
-            <a className="text-blue-600 underline underline-offset-4" href="#">
+            <a className={accentTextLinkClass} href="#">
 
               Tailwind CSS
 
@@ -85,7 +85,7 @@ export default function Home() {
 
             and{" "}
 
-            <a className="text-blue-600 underline underline-offset-4" href="#">
+            <a className={accentTextLinkClass} href="#">
 
               Vue.js
 
@@ -107,7 +107,7 @@ export default function Home() {
 
             On this personal website I write about how I{" "}
 
-            <a className="text-blue-600 underline underline-offset-4" href="#">
+            <a className={accentTextLinkClass} href="#">
 
               solve problems
 
@@ -115,7 +115,7 @@ export default function Home() {
 
             in my personal or professional projects, how I{" "}
 
-            <a className="text-blue-600 underline underline-offset-4" href="#">
+            <a className={accentTextLinkClass} href="#">
 
               set up my favourite apps
 
@@ -131,24 +131,20 @@ export default function Home() {
 
         <section className="space-y-3 pt-8">
 
-          <h3 className="text-[13px] font-semibold text-foreground/90">Selected Writing</h3>
+          <h3 className="text-[13px] font-semibold text-foreground/90">Latest post</h3>
 
           <ul className="space-y-2 text-[14px] text-foreground/90">
-
-            {selectedWriting.map((item) => (
-
-              <li key={`${item.date}-${item.title}`} className="flex gap-3">
-
-                <span className="w-[88px] shrink-0 tabular-nums text-muted-foreground">{item.date}</span>
-
-                <Link className="underline underline-offset-4" href={getPostHref(item)}>
-                  {item.title}
+            {latestPosts.map((post, index) => (
+              <li
+                key={`${post.date}-${post.title}`}
+                className={`flex gap-3${index === 0 ? "" : " blur-[3px] opacity-60"}`}
+              >
+                <span className="w-[88px] shrink-0 tabular-nums text-muted-foreground">{post.date}</span>
+                <Link className={textLinkClass} href={getPostHref(post)}>
+                  {post.title}
                 </Link>
-
               </li>
-
             ))}
-
           </ul>
 
         </section>

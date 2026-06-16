@@ -1,6 +1,7 @@
 "use client";
 
 import { type FormEvent, useState } from "react";
+import { formFieldClass, textLinkClass } from "@/lib/interactive";
 
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
@@ -12,55 +13,51 @@ export function ContactForm() {
 
   return (
     <div className="space-y-8">
-      <p className="text-[15px] font-semibold leading-6 text-foreground/90">
-        I would love to collaborate. Let&apos;s talk.
-      </p>
-
-      <form className="space-y-5" onSubmit={handleSubmit}>
-        <div className="space-y-1.5">
-          <label className="block text-[14px] text-foreground/80" htmlFor="name">
+      <form className="space-y-4" onSubmit={handleSubmit}>
+        <div>
+          <label className="sr-only" htmlFor="name">
             Name
           </label>
           <input
-            className="w-full border-b border-border bg-transparent py-1.5 text-[14px] text-foreground/90 outline-none placeholder:text-muted-foreground focus:border-foreground/40"
+            className={formFieldClass}
             id="name"
             name="name"
             type="text"
             autoComplete="name"
+            placeholder="Name"
             required
           />
         </div>
 
-        <div className="space-y-1.5">
-          <label className="block text-[14px] text-foreground/80" htmlFor="email">
+        <div>
+          <label className="sr-only" htmlFor="email">
             Email
           </label>
           <input
-            className="w-full border-b border-border bg-transparent py-1.5 text-[14px] text-foreground/90 outline-none placeholder:text-muted-foreground focus:border-foreground/40"
+            className={formFieldClass}
             id="email"
             name="email"
             type="email"
             autoComplete="email"
+            placeholder="Email"
             required
           />
         </div>
 
-        <div className="space-y-1.5">
-          <label className="block text-[14px] text-foreground/80" htmlFor="project-idea">
+        <div>
+          <label className="sr-only" htmlFor="project-idea">
             Project idea
           </label>
           <textarea
-            className="min-h-28 w-full resize-y border-b border-border bg-transparent py-1.5 text-[14px] leading-6 text-foreground/90 outline-none placeholder:text-muted-foreground focus:border-foreground/40"
+            className={`${formFieldClass} min-h-28 resize-y leading-6`}
             id="project-idea"
             name="project-idea"
+            placeholder="Project idea"
             required
           />
         </div>
 
-        <button
-          className="text-[14px] underline underline-offset-4 decoration-transparent hover:decoration-current"
-          type="submit"
-        >
+        <button className={textLinkClass} type="submit">
           Send message
         </button>
 
@@ -71,7 +68,7 @@ export function ContactForm() {
 
       <p className="text-[14px] leading-6 text-muted-foreground">
         Or just email me:{" "}
-        <a className="underline underline-offset-4 text-foreground/90" href="mailto:giuliafanasca@gmail.com">
+        <a className={textLinkClass} href="mailto:giuliafanasca@gmail.com">
           giuliafanasca@gmail.com
         </a>
       </p>

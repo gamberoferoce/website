@@ -1,4 +1,5 @@
 import { InstagramIcon, LinkedInIcon } from "@/components/SocialIcons";
+import { iconLinkClass, textLinkClass } from "@/lib/interactive";
 
 const socialLinks = {
   instagram: "https://www.instagram.com/giuliafanasca/",
@@ -12,19 +13,19 @@ export function SiteFooter() {
 
       <div className="space-y-1 sm:text-right">
         <p>
-          <a className="underline underline-offset-4" href="mailto:giuliafanasca@gmail.com">
+          <a className={textLinkClass} href="mailto:giuliafanasca@gmail.com">
             giuliafanasca@gmail.com
           </a>
         </p>
         <p>
-          <a className="underline underline-offset-4" href="tel:+393913845692">
+          <a className={textLinkClass} href="tel:+393913845692">
             +39 391 384 5692
           </a>
         </p>
         <div className="flex gap-3.5 pt-1 sm:justify-end">
           <a
             aria-label="Instagram"
-            className="text-muted-foreground transition-colors hover:text-foreground/90"
+            className={iconLinkClass}
             href={socialLinks.instagram}
             rel="noopener noreferrer"
             target="_blank"
@@ -33,7 +34,7 @@ export function SiteFooter() {
           </a>
           <a
             aria-label="LinkedIn"
-            className="text-muted-foreground transition-colors hover:text-foreground/90"
+            className={iconLinkClass}
             href={socialLinks.linkedin}
             rel="noopener noreferrer"
             target="_blank"
