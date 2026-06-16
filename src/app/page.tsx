@@ -40,91 +40,48 @@ export default function Home() {
 
 
         <section className="space-y-5 text-[14px] leading-6 text-foreground/80">
-
           <p>
-
-            I&apos;m working at{" "}
-
+            Building interactive experiences through{" "}
             <a className={accentTextLinkClass} href="#">
-
-              Trenda
-
+              XR
+            </a>
+            ,{" "}
+            <a className={accentTextLinkClass} href="#">
+              real-time 3D
+            </a>
+            , and seamless{" "}
+            <a className={accentTextLinkClass} href="#">
+              interfaces
             </a>{" "}
-
-            as a senior fullstack developer, bringing over 15 years of experience building applications with{" "}
-
+            between{" "}
             <a className={accentTextLinkClass} href="#">
-
-              PHP
-
-            </a>
-
-            ,{" "}
-
-            <a className={accentTextLinkClass} href="#">
-
-              Laravel
-
-            </a>
-
-            ,{" "}
-
-            <a className={accentTextLinkClass} href="#">
-
-              Livewire
-
-            </a>
-
-            ,{" "}
-
-            <a className={accentTextLinkClass} href="#">
-
-              Tailwind CSS
-
+              physical
             </a>{" "}
-
             and{" "}
-
             <a className={accentTextLinkClass} href="#">
-
-              Vue.js
-
-            </a>{" "}
-
-            to help drive their product forward.
-
+              digital world
+            </a>
+            .
           </p>
-
           <p>
-
-            I regularly contribute to the open source community by writing guides on how to automate tasks or by
-
-            releasing PHP packages to solve a particular problem.
-
-          </p>
-
-          <p>
-
-            On this personal website I write about how I{" "}
-
+            Here I share unfiltered thoughts on{" "}
             <a className={accentTextLinkClass} href="#">
-
-              solve problems
-
+              emerging technology
             </a>{" "}
-
-            in my personal or professional projects, how I{" "}
-
+            and{" "}
             <a className={accentTextLinkClass} href="#">
-
-              set up my favourite apps
-
-            </a>{" "}
-
-            or on how to apply minimalism to the digital world.
-
+              HCI
+            </a>
+            ,{" "}
+            <a className={accentTextLinkClass} href="#">
+              projects
+            </a>
+            , and{" "}
+            <a className={accentTextLinkClass} href="#">
+              prototypes
+            </a>
+            .
           </p>
-
         </section>
 
 
