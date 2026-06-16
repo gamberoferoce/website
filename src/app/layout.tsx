@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Giulia Fanasca • Full Stack Developer | stefanzweifel.dev",
+  title: "Giulia Fanasca • Creative Technologist",
   description: "Creative Technologist",
 };
 

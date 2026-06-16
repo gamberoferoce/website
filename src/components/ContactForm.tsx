@@ -1,19 +1,15 @@
 "use client";
 
-import { type FormEvent, useState } from "react";
+import { useActionState } from "react";
 import { formFieldClass, textLinkClass } from "@/lib/interactive";
+import { submitContactForm } from "@/lib/contact";
 
 export function ContactForm() {
-  const [submitted, setSubmitted] = useState(false);
-
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setSubmitted(true);
-  }
+  const [state, formAction, isPending] = useActionState(submitContactForm, null);
 
   return (
     <div className="space-y-8">
-      <form className="space-y-4" onSubmit={handleSubmit}>
+      <form className="space-y-4" action={formAction}>
         <div>
           <label className="sr-only" htmlFor="name">
             Name
@@ -26,6 +22,7 @@ export function ContactForm() {
             autoComplete="name"
             placeholder="Name"
             required
+            disabled={isPending}
           />
         </div>
 
@@ -41,6 +38,7 @@ export function ContactForm() {
             autoComplete="email"
             placeholder="Email"
             required
+            disabled={isPending}
           />
         </div>
 
@@ -54,15 +52,21 @@ export function ContactForm() {
             name="project-idea"
             placeholder="Project idea"
             required
+            disabled={isPending}
           />
         </div>
 
-        <button className={textLinkClass} type="submit">
-          Send message
+        <button className={textLinkClass} disabled={isPending} type="submit">
+          {isPending ? "Sending…" : "Send message"}
         </button>
 
-        {submitted ? (
-          <p className="text-[14px] text-muted-foreground">Thanks — I&apos;ll get back to you soon.</p>
+        {state ? (
+          <p
+            className={`text-[14px] ${state.ok ? "text-muted-foreground" : "text-destructive"}`}
+            role="status"
+          >
+            {state.message}
+          </p>
         ) : null}
       </form>
 
