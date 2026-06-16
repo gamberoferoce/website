@@ -64,11 +64,11 @@ export default function Home() {
             .
           </p>
           <p>
-            Here I share unfiltered thoughts on{" "}
+            This space is a notebook for my unfiltered thoughts on{" "}
             <a className={accentTextLinkClass} href="#">
               emerging technology
-            </a>{" "}
-            and{" "}
+            </a>
+            ,{" "}
             <a className={accentTextLinkClass} href="#">
               HCI
             </a>
@@ -76,11 +76,11 @@ export default function Home() {
             <a className={accentTextLinkClass} href="#">
               projects
             </a>
-            , and{" "}
+            , and a graveyard of{" "}
             <a className={accentTextLinkClass} href="#">
-              prototypes
-            </a>
-            .
+              unfinished prototypes
+            </a>{" "}
+            ;)
           </p>
         </section>
 
