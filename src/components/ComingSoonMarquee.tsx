@@ -46,7 +46,7 @@ export function ComingSoonMarquee() {
 
   useEffect(() => {
     function updateItemCount() {
-      const needed = Math.ceil(window.innerWidth / SEGMENT_WIDTH_ESTIMATE) + 4;
+      const needed = Math.ceil(window.innerWidth / SEGMENT_WIDTH_ESTIMATE) + 6;
       setItemCount(Math.max(needed, 8));
     }
 

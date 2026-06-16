@@ -15,18 +15,21 @@
 }
 
 .wrapper {
-  width: 100%;
+  width: calc(100% + 12vw);
+  margin-inline: -6vw;
   padding: 6rem 0;
   font-family: var(--font-sans);
   color: var(--foreground);
 }
 
 .rotateLeft {
-  transform: rotate(-12deg);
+  transform: rotate(-12deg) scale(1.05);
+  transform-origin: center center;
 }
 
 .rotateRight {
-  transform: rotate(12deg);
+  transform: rotate(12deg) scale(1.05);
+  transform-origin: center center;
 }
 
 .marquee {
