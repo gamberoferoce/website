@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Website Clone",
-  description: "Pixel-perfect website clone",
+  title: "Giulia Fanasca • Full Stack Developer | stefanzweifel.dev",
+  description: "Creative Technologist",
 };
 
 export default function RootLayout({
@@ -22,12 +22,39 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const rainbowGradient =
+    "linear-gradient(90deg, #ef4444 0%, #f97316 18%, #facc15 36%, #22c55e 54%, #3b82f6 72%, #8b5cf6 100%)";
+
   return (
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <div aria-hidden className="pointer-events-none fixed inset-x-0 top-0 z-50">
+          {/* crisp line */}
+          <div className="h-[2px] w-full opacity-70" style={{ backgroundImage: rainbowGradient }} />
+
+          {/* leaking glow (downwards) */}
+          <div
+            className="relative h-5 w-full"
+            style={{
+              WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0))",
+              maskImage: "linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0))",
+            }}
+          >
+            <div
+              className="absolute inset-x-0 -top-2 h-6 blur-[10px] opacity-28"
+              style={{ backgroundImage: rainbowGradient }}
+            />
+            <div
+              className="absolute inset-x-0 -top-4 h-8 blur-[18px] opacity-10"
+              style={{ backgroundImage: rainbowGradient }}
+            />
+          </div>
+        </div>
+        {children}
+      </body>
     </html>
   );
 }
