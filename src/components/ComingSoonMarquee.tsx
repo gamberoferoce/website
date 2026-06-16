@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import styles from "./ComingSoonMarquee.module.css";
 
 const LABEL = "Coming Soon";
-const PILL_WIDTH_ESTIMATE = 168;
+const SEGMENT_WIDTH_ESTIMATE = 152;
 
 function MarqueeTrack({
   direction = "forwards",
@@ -29,12 +29,12 @@ function MarqueeTrack({
     >
       <div className={styles.trackGroup}>
         {items.map((index) => (
-          <p key={`a-${index}`}>{LABEL}</p>
+          <span key={`a-${index}`}>{LABEL}</span>
         ))}
       </div>
       <div aria-hidden className={styles.trackGroup}>
         {items.map((index) => (
-          <p key={`b-${index}`}>{LABEL}</p>
+          <span key={`b-${index}`}>{LABEL}</span>
         ))}
       </div>
     </div>
@@ -46,7 +46,7 @@ export function ComingSoonMarquee() {
 
   useEffect(() => {
     function updateItemCount() {
-      const needed = Math.ceil(window.innerWidth / PILL_WIDTH_ESTIMATE) + 4;
+      const needed = Math.ceil(window.innerWidth / SEGMENT_WIDTH_ESTIMATE) + 4;
       setItemCount(Math.max(needed, 8));
     }
 
@@ -58,10 +58,10 @@ export function ComingSoonMarquee() {
   return (
     <div aria-hidden className={styles.overlay}>
       <div className={styles.wrapper}>
-        <div className={`${styles.marquee} ${styles.rotateLeft}`}>
+        <div className={`${styles.marquee} ${styles.rotateLeft} ${styles.tapeLime}`}>
           <MarqueeTrack itemCount={itemCount} />
         </div>
-        <div className={`${styles.marquee} ${styles.rotateRight}`}>
+        <div className={`${styles.marquee} ${styles.rotateRight} ${styles.tapeNeutral}`}>
           <MarqueeTrack direction="reverse" speed="40s" itemCount={itemCount} />
         </div>
       </div>

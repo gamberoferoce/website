@@ -34,6 +34,10 @@
   overflow: hidden;
 }
 
+.marquee + .marquee {
+  margin-top: 0.75rem;
+}
+
 .track {
   display: flex;
   width: max-content;
@@ -45,21 +49,37 @@
 .trackGroup {
   display: flex;
   flex-shrink: 0;
-  gap: 1.5rem;
+  background-color: var(--tape-color);
 }
 
-.trackGroup p {
+.trackGroup span {
+  display: inline-flex;
   flex-shrink: 0;
-  border: 1px solid var(--nav-link-color);
-  border-radius: 999px;
-  background-color: var(--background);
-  color: var(--nav-link-color);
-  padding: 0.5rem 1.25rem;
+  align-items: center;
+  padding: 0.45rem 1.35rem;
+  color: var(--foreground);
   font-size: 0.85em;
   font-weight: 600;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   white-space: nowrap;
+}
+
+.tapeLime {
+  --tape-color: #c1eb4d;
+}
+
+.tapeNeutral {
+  --tape-color: var(--background);
+}
+
+.tapeNeutral .trackGroup {
+  border-top: 1px solid var(--nav-link-color);
+  border-bottom: 1px solid var(--nav-link-color);
+}
+
+.tapeNeutral .trackGroup span {
+  color: var(--nav-link-color);
 }
 
 @keyframes marquee-move-text {
@@ -78,11 +98,8 @@
     padding: 3rem 0;
   }
 
-  .trackGroup {
-    gap: 1rem;
-  }
-
-  .trackGroup p {
-    padding: 0.35rem 0.9rem;
+  .trackGroup span {
+    padding: 0.35rem 1rem;
+    letter-spacing: 0.08em;
   }
 }
