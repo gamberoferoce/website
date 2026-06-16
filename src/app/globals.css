@@ -81,6 +81,31 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --nav-link-color: color-mix(in oklch, var(--foreground) 90%, transparent);
+  --rainbow-gradient: linear-gradient(
+    90deg,
+    #ef4444 0%,
+    #f97316 18%,
+    #facc15 36%,
+    #22c55e 54%,
+    #3b82f6 72%,
+    #8b5cf6 100%
+  );
+  --rainbow-gradient-shift: linear-gradient(
+    to right,
+    var(--nav-link-color) 0%,
+    var(--nav-link-color) 5%,
+    #ef4444 10%,
+    #f97316 20%,
+    #facc15 30%,
+    #22c55e 40%,
+    #3b82f6 50%,
+    #8b5cf6 60%,
+    #ef4444 70%,
+    #f97316 80%,
+    #facc15 90%,
+    var(--nav-link-color) 100%
+  );
 }
 
 .dark {

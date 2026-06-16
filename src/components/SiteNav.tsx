@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { ContactNavLink } from "@/components/ContactNavLink";
 
 const navItems = [
   { label: "Projects", href: "/projects" },
@@ -33,8 +34,8 @@ export function SiteNav() {
             </Link>
           );
         })}
+        <ContactNavLink isActive={pathname === "/contact"} />
       </div>
     </nav>
   );
 }
-

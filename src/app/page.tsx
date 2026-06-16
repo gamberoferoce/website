@@ -146,8 +146,13 @@ export default function Home() {
           </div>
         </section>
 
-        <footer className="pt-6 text-[13px] text-muted-foreground">
-          © 2012 - 2026 Giulia Fanasca
+        <footer className="space-y-1 pt-6 text-[13px] text-muted-foreground">
+          <p>
+            <a className="underline underline-offset-4" href="mailto:giuliafanasca@gmail.com">
+              giuliafanasca@gmail.com
+            </a>
+          </p>
+          <p>© 2012 - 2026 Giulia Fanasca</p>
         </footer>
       </div>
     </main>

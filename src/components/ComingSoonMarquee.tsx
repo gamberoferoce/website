@@ -1,0 +1,70 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import styles from "./ComingSoonMarquee.module.css";
+
+const LABEL = "Coming Soon";
+const PILL_WIDTH_ESTIMATE = 168;
+
+function MarqueeTrack({
+  direction = "forwards",
+  speed = "20s",
+  itemCount,
+}: {
+  direction?: "forwards" | "reverse";
+  speed?: string;
+  itemCount: number;
+}) {
+  const items = Array.from({ length: itemCount }, (_, index) => index);
+
+  return (
+    <div
+      className={styles.track}
+      style={
+        {
+          "--direction": direction,
+          "--speed": speed,
+        } as React.CSSProperties
+      }
+    >
+      <div className={styles.trackGroup}>
+        {items.map((index) => (
+          <p key={`a-${index}`}>{LABEL}</p>
+        ))}
+      </div>
+      <div aria-hidden className={styles.trackGroup}>
+        {items.map((index) => (
+          <p key={`b-${index}`}>{LABEL}</p>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export function ComingSoonMarquee() {
+  const [itemCount, setItemCount] = useState(10);
+
+  useEffect(() => {
+    function updateItemCount() {
+      const needed = Math.ceil(window.innerWidth / PILL_WIDTH_ESTIMATE) + 4;
+      setItemCount(Math.max(needed, 8));
+    }
+
+    updateItemCount();
+    window.addEventListener("resize", updateItemCount);
+    return () => window.removeEventListener("resize", updateItemCount);
+  }, []);
+
+  return (
+    <div aria-hidden className={styles.overlay}>
+      <div className={styles.wrapper}>
+        <div className={`${styles.marquee} ${styles.rotateLeft}`}>
+          <MarqueeTrack itemCount={itemCount} />
+        </div>
+        <div className={`${styles.marquee} ${styles.rotateRight}`}>
+          <MarqueeTrack direction="reverse" speed="40s" itemCount={itemCount} />
+        </div>
+      </div>
+    </div>
+  );
+}

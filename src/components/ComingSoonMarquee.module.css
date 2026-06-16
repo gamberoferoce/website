@@ -1,0 +1,88 @@
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  z-index: 10;
+  display: flex;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+  transform: translateX(-50%);
+  pointer-events: none;
+  user-select: none;
+  overflow: hidden;
+}
+
+.wrapper {
+  width: 100%;
+  padding: 4rem 0;
+  font-size: clamp(1.25rem, 4vw, 2.5rem);
+  color: var(--foreground);
+}
+
+.rotateLeft {
+  transform: rotate(-12deg);
+}
+
+.rotateRight {
+  transform: rotate(12deg);
+}
+
+.marquee {
+  width: 100%;
+  overflow: hidden;
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  flex-shrink: 0;
+  animation: marquee-move-text var(--speed, 20s) linear infinite var(--direction, forwards);
+  will-change: transform;
+}
+
+.trackGroup {
+  display: flex;
+  flex-shrink: 0;
+  gap: 1.5rem;
+}
+
+.trackGroup p {
+  flex-shrink: 0;
+  border: 1px solid var(--nav-link-color);
+  border-radius: 999px;
+  background-color: var(--background);
+  color: var(--nav-link-color);
+  padding: 0.5rem 1.25rem;
+  font-size: 0.85em;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+@keyframes marquee-move-text {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    font-size: 1rem;
+    padding: 3rem 0;
+  }
+
+  .trackGroup {
+    gap: 1rem;
+  }
+
+  .trackGroup p {
+    padding: 0.35rem 0.9rem;
+  }
+}

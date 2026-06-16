@@ -1,0 +1,149 @@
+@property --bg-position {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 100;
+}
+
+@property --after-blur {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+@property --after-opacity {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+@property --before-opacity {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 1;
+}
+
+@property --btn-scale {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 1;
+}
+
+@property --after-pos-y {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 10;
+}
+
+.contactLink {
+  --btn-border-width: 1.5;
+  --btn-scale: 1;
+  --bg-position: 100;
+  --after-blur: 0;
+  --after-opacity: 0;
+  --before-opacity: 1;
+  --after-pos-y: 10;
+  --before-bg: #ffffff;
+  --after-bg: #ffffff;
+
+  display: inline-block;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  text-decoration: none;
+  transform: scale(var(--btn-scale));
+  transition:
+    --bg-position 3s ease,
+    --after-blur 0.3s ease,
+    --before-opacity 0.3s ease,
+    --btn-scale 0.2s cubic-bezier(0.76, -0.25, 0.51, 1.13);
+}
+
+.inner {
+  display: block;
+  position: relative;
+  padding: 0.1em 0.35em;
+  background: var(--background);
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.25rem;
+  cursor: pointer;
+}
+
+.inner:not(:hover) {
+  transition: --after-blur 0.3s ease;
+}
+
+.label {
+  color: inherit;
+  font-weight: 400;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: transparent;
+}
+
+.inner::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -2;
+  border-radius: 8px;
+  background: var(--after-bg) no-repeat calc(var(--bg-position) * 1%) 0% / 900%;
+  transform: translateY(calc(var(--after-pos-y) * 1px));
+  filter: blur(calc(var(--after-blur) * 1px));
+  opacity: var(--after-opacity);
+  pointer-events: none;
+}
+
+.inner::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: calc(100% + calc(calc(var(--btn-border-width) * 2) * 1px));
+  height: calc(100% + calc(calc(var(--btn-border-width) * 2) * 1px));
+  top: calc(var(--btn-border-width) * -1px);
+  left: calc(var(--btn-border-width) * -1px);
+  z-index: -1;
+  border-radius: 9px;
+  opacity: var(--before-opacity);
+  background: var(--before-bg) no-repeat calc(var(--bg-position) * 1%) 0% / 900%;
+  pointer-events: none;
+}
+
+.contactLink:hover {
+  --btn-scale: 1.05;
+  --bg-position: 0;
+  --before-bg: var(--rainbow-gradient-shift);
+  --after-bg: var(--rainbow-gradient-shift);
+  --after-blur: 30;
+  --after-opacity: 0.3;
+  --after-pos-y: 0;
+  --before-opacity: 1;
+}
+
+.contactLink:hover .label {
+  background: var(--rainbow-gradient-shift) no-repeat calc(var(--bg-position) * 1%) 0% / 900%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-decoration-color: transparent;
+  transition: -webkit-text-fill-color 0.2s ease, color 0.2s ease;
+}
+
+.contactLink:not(:hover) .label {
+  background: none;
+  -webkit-text-fill-color: currentcolor;
+  color: inherit;
+}
+
+.contactLink:active {
+  --btn-scale: 0.98;
+  --after-blur: 15;
+}
+
+.active .label {
+  text-decoration-color: currentcolor;
+}

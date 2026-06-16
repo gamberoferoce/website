@@ -1,3 +1,4 @@
+import { ComingSoonMarquee } from "@/components/ComingSoonMarquee";
 import { SiteNav } from "@/components/SiteNav";
 
 const projects = [
@@ -44,18 +45,21 @@ export default function ProjectsPage() {
     <main className="mx-auto w-full max-w-[640px] px-6 pb-16 pt-6 md:pb-24 md:pt-8">
       <SiteNav />
 
-      <div className="space-y-4 pt-16 md:pt-20">
-        <h1 className="text-[13px] font-semibold leading-5 text-foreground/90">Projects</h1>
-        <div className="space-y-6">
-          {projects.map((p) => (
-            <div key={p.name} className="space-y-1">
-              <h2 className="text-[12px] font-semibold text-foreground/90">{p.name}</h2>
-              <p className="text-[12px] leading-6 text-foreground/80">{p.description}</p>
-            </div>
-          ))}
+      <div className="relative min-h-[420px] pt-16 md:min-h-[480px] md:pt-20">
+        <div className="space-y-4 opacity-35">
+          <h1 className="text-[13px] font-semibold leading-5 text-foreground/90">Projects</h1>
+          <div className="space-y-6">
+            {projects.map((p) => (
+              <div key={p.name} className="space-y-1">
+                <h2 className="text-[12px] font-semibold text-foreground/90">{p.name}</h2>
+                <p className="text-[12px] leading-6 text-foreground/80">{p.description}</p>
+              </div>
+            ))}
+          </div>
         </div>
+
+        <ComingSoonMarquee />
       </div>
     </main>
   );
 }
-

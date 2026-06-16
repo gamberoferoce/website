@@ -22,8 +22,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const rainbowGradient =
-    "linear-gradient(90deg, #ef4444 0%, #f97316 18%, #facc15 36%, #22c55e 54%, #3b82f6 72%, #8b5cf6 100%)";
+  const rainbowGradient = "var(--rainbow-gradient)";
 
   return (
     <html
