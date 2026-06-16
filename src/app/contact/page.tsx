@@ -1,14 +1,17 @@
 import { ContactForm } from "@/components/ContactForm";
+import { PageTitle } from "@/components/PageTitle";
+import { SitePage } from "@/components/SitePage";
 import { SiteNav } from "@/components/SiteNav";
 
 export default function ContactPage() {
   return (
-    <main className="mx-auto w-full max-w-[640px] px-6 pb-16 pt-6 md:pb-24 md:pt-8">
+    <SitePage>
       <SiteNav />
 
-      <div className="pt-16 md:pt-20">
+      <div className="space-y-6 pt-16 md:pt-20">
+        <PageTitle>Contact</PageTitle>
         <ContactForm />
       </div>
-    </main>
+    </SitePage>
   );
 }
