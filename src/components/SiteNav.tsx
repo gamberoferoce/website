@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ContactNavLink } from "@/components/ContactNavLink";
-import { ThemeToggle } from "@/components/ThemeToggle";
+import { LightPullCord } from "@/components/LightPullCord";
 import { headerNavLinkActiveClass, headerNavLinkClass } from "@/lib/interactive";
 import { cn } from "@/lib/utils";
 
@@ -50,7 +50,7 @@ export function SiteNav() {
             );
           })}
           <ContactNavLink isActive={pathname === "/contact"} />
-          <ThemeToggle />
+          <LightPullCord />
         </div>
       </div>
 

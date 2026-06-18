@@ -228,3 +228,95 @@
     animation: none;
   }
 }
+
+@layer components {
+  .light-pull-cord__stage {
+    position: relative;
+    width: 0;
+    height: 0;
+  }
+
+  .light-pull-cord__anchor {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 4px;
+    border-radius: 9999px;
+    background: color-mix(in oklch, var(--foreground) 35%, transparent);
+    transform: translate(-50%, 0);
+  }
+
+  .light-pull-cord__svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 112px;
+    height: 120px;
+    overflow: visible;
+    transform: translate(-50%, 0);
+    pointer-events: none;
+  }
+
+  .light-pull-cord__path {
+    fill: none;
+    stroke: color-mix(in oklch, var(--foreground) 55%, transparent);
+    stroke-width: 1;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .light-pull-cord__handle-wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translate(-50%, -50%);
+  }
+
+  .light-pull-cord__handle {
+    position: relative;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    width: 14px;
+    height: 14px;
+    appearance: none;
+    cursor: grab;
+    touch-action: none;
+    border: 1.5px solid oklch(0.145 0 0);
+    border-radius: 9999px;
+    padding: 0;
+    background-color: #fff;
+    box-shadow: none;
+    color-scheme: only light;
+  }
+
+  .light-pull-cord__handle:active {
+    cursor: grabbing;
+  }
+
+  .light-pull-cord__label {
+    position: relative;
+    margin-top: 5px;
+    pointer-events: none;
+    white-space: nowrap;
+    font-size: 11px;
+    line-height: 1;
+    color: color-mix(in oklch, var(--foreground) 72%, transparent);
+    opacity: 0;
+    transition: opacity 0.15s ease;
+  }
+
+  .light-pull-cord__handle-wrap:hover .light-pull-cord__label,
+  .light-pull-cord__handle-wrap:focus-within .light-pull-cord__label {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .light-pull-cord__handle {
+    cursor: pointer;
+  }
+}
