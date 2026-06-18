@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
+import { UmamiAnalytics } from "@/components/UmamiAnalytics";
+import { UmamiEngagement } from "@/components/UmamiEngagement";
+import { themeInitScript } from "@/lib/theme";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -28,7 +32,11 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
+      <Script id="theme-init" strategy="beforeInteractive">
+        {themeInitScript}
+      </Script>
       <body className="min-h-full flex flex-col">
         <div aria-hidden className="pointer-events-none fixed inset-x-0 top-0 z-50">
           {/* crisp line */}
@@ -53,6 +61,8 @@ export default function RootLayout({
           </div>
         </div>
         {children}
+        <UmamiAnalytics />
+        <UmamiEngagement />
       </body>
     </html>
   );

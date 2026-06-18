@@ -1,5 +1,8 @@
+"use client";
+
 import { InstagramIcon, LinkedInIcon } from "@/components/SocialIcons";
 import { iconLinkClass, textLinkClass } from "@/lib/interactive";
+import { trackUmamiEvent } from "@/lib/umami";
 
 const socialLinks = {
   instagram: "https://www.instagram.com/giuliafanasca/",
@@ -13,7 +16,11 @@ export function SiteFooter() {
 
       <div className="space-y-1 sm:text-right">
         <p>
-          <a className={textLinkClass} href="mailto:giuliafanasca@gmail.com">
+          <a
+            className={textLinkClass}
+            href="mailto:giuliafanasca@gmail.com"
+            onClick={() => trackUmamiEvent("click-email")}
+          >
             giuliafanasca@gmail.com
           </a>
         </p>
@@ -27,6 +34,7 @@ export function SiteFooter() {
             aria-label="Instagram"
             className={iconLinkClass}
             href={socialLinks.instagram}
+            onClick={() => trackUmamiEvent("click-instagram")}
             rel="noopener noreferrer"
             target="_blank"
           >
@@ -36,6 +44,7 @@ export function SiteFooter() {
             aria-label="LinkedIn"
             className={iconLinkClass}
             href={socialLinks.linkedin}
+            onClick={() => trackUmamiEvent("click-linkedin")}
             rel="noopener noreferrer"
             target="_blank"
           >

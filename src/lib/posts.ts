@@ -2,6 +2,8 @@ export type PostListItem = {
   slug?: string;
   date: string;
   title: string;
+  /** When set, overrides the default date-based blur rule. */
+  blurred?: boolean;
 };
 
 export type PostBlock =
@@ -22,24 +24,19 @@ export const publishedPosts = [
     content: [
       {
         type: "paragraph",
-        text: "Does the perceptual metaphor initially chosen for a technology determine its evolutionary trajectory?",
+        text: "I’ve been stuck on a question that sounds abstract until you try to build something with it: does the perceptual metaphor initially chosen for a technology determine its evolutionary trajectory?",
       },
       {
         type: "paragraph",
-        text: 'When a technological category is born, very often what we define as "the product" is not the underlying mechanism, but its representation.',
-      },
-      {
-        type: "lines",
-        lines: [
-          "The radio was not electromagnetic waves.",
-          "The computer was not the transistor.",
-          "The software was not the code.",
-          "The Internet was not the TCP/IP protocol.",
-        ],
+        text: 'When a technological category is born, most of the time what we define as "the product" is more the representation of the underlying mechanism than the lower level itself.',
       },
       {
         type: "paragraph",
-        text: "For most people, the category coincides with its dominant interface. To make an analogy with Kant, the interface has always been the phenomenal representation of the product, designed with the aim of defining the modalities of interaction with the object and the metaphor to which to associate them.",
+        text: "For you as a user, your phone is the object not how it works, like the computer is not the transistor, the software is not the code, and the Internet is not the TCP/IP protocol.",
+      },
+      {
+        type: "paragraph",
+        text: "For most people, the category coincides with its dominant interface. To make an analogy with Kant (not essential, but it does make the concept embarrassingly intuitive ;)), the interface has always been the phenomenal representation of the product, designed with the aim of defining the modalities of interaction with the object and the metaphor to which to associate them.",
       },
       {
         type: "paragraph",
@@ -158,25 +155,165 @@ export const publishedPosts = [
       },
     ],
   },
+  {
+    slug: "the-document-metaphor-was-right-but-was-it-inevitable",
+    date: "19/06/2026",
+    title: "Skeuomorphism Never Left: It Just Got Invisible",
+    content: [
+      {
+        type: "paragraph",
+        text: "The document metaphor was the right path to choose. But was it inevitable?",
+      },
+      {
+        type: "paragraph",
+        text: "The page was skeuomorphism before we had a word for it. We called it realism, then flat design, then convinced ourselves we had moved on. We hadn't, the filing cabinet just stopped looking like wood.",
+      },
+      {
+        type: "paragraph",
+        text: "The metaphor chosen at the time, rightly so, given that a computer wrote things and needed to let you save text and return to it later, was: page. Multiple pages aggregated? A folder. Multiple folders and pages aggregated and stored? An archive or library. Elegant.",
+      },
+      {
+        type: "paragraph",
+        text: "But what if the information store, meant to let you work on something else and then return to your previous work by creating separate compartments, had chosen the metaphor of trees, as if content were information written into the veins of a leaf? An aggregate of leaves kept together is a branch. The equivalent of the library becomes a tree. That would have led, in turn, to a desktop more like the layout of a garden than what we have now.",
+      },
+      {
+        type: "paragraph",
+        text: "Yes, metaphors influence how we perceive software, but they are not limited to that. This is harder to see in hindsight, since what was once the metaphor used to represent a new category has now become its definition: something we take for granted, as if it had been inevitable. Yet metaphors determine which evolutions of software seem natural and which seem unnatural.",
+      },
+      { type: "heading", text: "The Vocabulary of the Page" },
+      {
+        type: "paragraph",
+        text: "The current document metaphor makes it almost inevitable to keep walking further down the road already taken, defining by inertia concepts such as: open, close, archive, copy, trash, browse, sort. All of it recalls document management.",
+      },
+      {
+        type: "paragraph",
+        text: "But what if we had opted for the metaphor of the leaf? I'm not questioning the choice of the page, stay with me to grasp the point. The operations that would have emerged naturally (literally, lol) would be something like: grow, prune, graft, propagate, cultivate, observe relationships, follow paths.",
+      },
+      {
+        type: "paragraph",
+        text: "Notice how tiring it is today to describe the saving of environments containing information without talking about archiving or files. I'll throw you a challenge: try to describe a file system without using words derived from document archiving. Normally we say: file, folder, directory, archive, library, document, trash, copy, move, path, explore. We don't even notice it anymore, but all of these come from the world of managing physical documents. The metaphor has become so dominant that it makes it hard to even imagine alternatives.",
+      },
+      {
+        type: "paragraph",
+        text: "Now imagine explaining to someone who has never seen a computer what's happening behind the scenes, but using a biological metaphor instead.",
+      },
+      {
+        type: "lines",
+        lines: [
+          "From: \"I saved the file in the Projects folder.\"",
+          "To: \"I grew this leaf on the Projects branch.\"",
+          "From: \"I copied the file.\"",
+          "To: \"I propagated this leaf.\"",
+          "From: \"I moved the folder.\"",
+          "To: \"I transplanted this branch.\"",
+        ],
+      },
+      {
+        type: "paragraph",
+        text: "Sounds strange, right? Not because it's less correct. It sounds strange because for forty years we've been immersed in the archival metaphor.",
+      },
+      {
+        type: "lines",
+        lines: [
+          "File → Leaf",
+          "Folder → Branch",
+          "Directory → Tree",
+          "Library → Forest",
+          "Copy → Propagation",
+          "Move → Transplant",
+          "Delete → Pruning",
+          "Desktop → Garden layout",
+        ],
+      },
+      {
+        type: "paragraph",
+        text: "But the more interesting consequence, more than the vocabulary, is that we probably would have started thinking of information as growing organisms rather than archived documents, and of the desktop as real, proper terrain (an interesting line of thought, in the perspective of finding a paradigm that works transversally from 2D interfaces to spatial computing, but that's perhaps another reflection). It seems like a trivial detail, but language changes how you analyze a problem. Have we ever stopped to think how much of our current way of conceiving information comes from the nature of information itself, and how much comes from the metaphor chosen to represent it?",
+      },
+      { type: "heading", text: "More Than Aesthetics" },
+      {
+        type: "paragraph",
+        text: "In essence, we're not just talking about a change of aesthetics. It's a decision that touches perceived affordances, the mental models it evokes, the operations that seem obvious, and the future evolutions that seem logical.",
+      },
+      {
+        type: "paragraph",
+        text: "If software had adopted a biological metaphor instead of an archival one, would we have invented the same paradigms? Maybe yes, maybe no, but the question is intriguing. The metaphor may not determine evolution on its own, but it undeniably creates strong inertia toward certain directions and makes others less likely.",
+      },
+      {
+        type: "paragraph",
+        text: "The fact that it's hard to describe information management without archival language doesn't necessarily prove the metaphor caused the architecture, or that any alternative would have worked equally well. It could also be that the document metaphor succeeded precisely because it described a structure that was already technically convenient.",
+      },
+      {
+        type: "paragraph",
+        text: "So the honest version is not black and white. I'm not claiming the metaphor alone determines evolution. I'm asking: are we observing a property of the technology, or a metaphor that is crystallizing?",
+      },
+      { type: "heading", text: "The Invisible Skeuomorph" },
+      {
+        type: "paragraph",
+        text: "It makes little sense in 2026 to argue about the choice made at the birth of computers. But this is the perfect moment, if not to determine then at least to question, the metaphor taking shape for AI agents and spatial computing.",
+      },
+      {
+        type: "paragraph",
+        text: "If today we represent agents as chat, what kinds of evolution are we making natural? And which ones are we making nearly invisible?",
+      },
+      {
+        type: "paragraph",
+        text: "Today it's difficult to talk about information management without using the language of archives. In ten years, it might be difficult to talk about AI without using the language of conversation, not because conversation is the only true form, but because we stopped seeing it as a metaphor at all.",
+      },
+      {
+        type: "paragraph",
+        text: "Once we've seen that the desktop wasn't so inevitable after all, it was the right choice, but not because there were no alternatives, are we sure that chat is?",
+      },
+    ],
+  },
 ] as const satisfies readonly PublishedPost[];
 
-export const posts = [
-  ...publishedPosts,
-  { date: "01/03/2024", title: "Meal Planning in Things 3" },
-  { date: "01/09/2023", title: "An Opinionated Personal Folder Structure" },
-  { date: "01/12/2022", title: "My updated Things 3 Setup" },
-  { date: "01/05/2021", title: "Deployer on GitHub Actions" },
-  { date: "01/04/2021", title: "Auto Merge Dependabot Pull Requests with GitHub Actions" },
-  { date: "01/02/2021", title: "My Alfred Setup" },
-  { date: "01/12/2020", title: "Getting Started with Bash Testing with Bats" },
-  { date: "01/08/2020", title: "Synology NAS Setup (2020)" },
-  { date: "01/12/2019", title: "Things 3 Setup" },
-  { date: "01/06/2019", title: "GitHub Actions for PHP Developers (HCL)" },
-  { date: "01/12/2018", title: "Create Mocks for API Clients in Laravel" },
-  { date: "01/10/2018", title: "How to Encrypt File Uploads with Laravel" },
-  { date: "01/02/2018", title: "How to use Tailwind CSS in Vue together with CSS Modules" },
+const placeholderPosts = [
   { date: "01/12/2016", title: "How I write Integration Tests for Laravel Socialite powered Apps" },
+  { date: "01/02/2018", title: "How to use Tailwind CSS in Vue together with CSS Modules" },
+  { date: "01/10/2018", title: "How to Encrypt File Uploads with Laravel" },
+  { date: "01/12/2018", title: "Create Mocks for API Clients in Laravel" },
+  { date: "01/06/2019", title: "GitHub Actions for PHP Developers (HCL)" },
+  { date: "01/12/2019", title: "Things 3 Setup" },
+  { date: "01/08/2020", title: "Synology NAS Setup (2020)" },
+  { date: "01/12/2020", title: "Getting Started with Bash Testing with Bats" },
+  { date: "01/02/2021", title: "My Alfred Setup" },
+  { date: "01/04/2021", title: "Auto Merge Dependabot Pull Requests with GitHub Actions" },
+  { date: "01/05/2021", title: "Deployer on GitHub Actions" },
+  { date: "01/12/2022", title: "My updated Things 3 Setup" },
+  { date: "01/09/2023", title: "An Opinionated Personal Folder Structure" },
+  { date: "01/03/2024", title: "Meal Planning in Things 3" },
 ] as const satisfies readonly PostListItem[];
+
+/** Chronological order: oldest at index 0, newest at the end. */
+export const posts = [...placeholderPosts, ...publishedPosts] as const satisfies readonly PostListItem[];
+
+export function getPostsForDisplay(): PostListItem[] {
+  return [...posts].toReversed();
+}
+
+export function getLatestPosts(count: number): PostListItem[] {
+  return getPostsForDisplay().slice(0, count);
+}
+
+const BLUR_BEFORE_DATE = new Date(2026, 5, 1);
+
+function parsePostDate(date: string): Date {
+  const [day, month, year] = date.split("/").map(Number);
+  return new Date(year, month - 1, day);
+}
+
+/** Posts before 1 June 2026 are blurred unless `blurred` is set explicitly. */
+export function isPostBlurred(post: PostListItem): boolean {
+  if (post.blurred !== undefined) {
+    return post.blurred;
+  }
+  return parsePostDate(post.date) < BLUR_BEFORE_DATE;
+}
+
+export function getPostListItemClassName(post: PostListItem, extra?: string): string {
+  const blur = isPostBlurred(post) ? " blur-[3px] opacity-60" : "";
+  return `flex gap-3${extra ?? ""}${blur}`;
+}
 
 export function getPostBySlug(slug: string): PublishedPost | undefined {
   return publishedPosts.find((post) => post.slug === slug);

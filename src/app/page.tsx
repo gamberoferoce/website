@@ -1,11 +1,12 @@
 import Link from "next/link";
+import { LatestPostLink } from "@/components/LatestPostLink";
 import { PageTitle } from "@/components/PageTitle";
 import { SitePage } from "@/components/SitePage";
 import { SiteNav } from "@/components/SiteNav";
 import { accentTextLinkClass, textLinkClass } from "@/lib/interactive";
-import { getPostHref, posts } from "@/lib/posts";
+import { getLatestPosts, getPostHref, getPostListItemClassName } from "@/lib/posts";
 export default function Home() {
-  const latestPosts = posts.slice(0, 4);
+  const latestPosts = getLatestPosts(4);
 
   return (
     <SitePage>
@@ -24,7 +25,7 @@ export default function Home() {
         <div className="space-y-12">
           <header className="pt-16 md:pt-20">
             <div className="relative">
-              <div className="absolute bottom-full left-0 mb-2 h-8 w-8 rounded-[6px] bg-gradient-to-br from-sky-400 to-blue-700 shadow-sm" />
+              <div className="avatar-placeholder absolute bottom-full left-0 mb-2 h-8 w-8 rounded-[6px] shadow-sm" />
 
               <div className="space-y-0.5">
                 <PageTitle>Giulia Fanasca</PageTitle>
@@ -88,14 +89,17 @@ export default function Home() {
 
           <ul className="space-y-2 text-[14px] text-foreground/90">
             {latestPosts.map((post, index) => (
-              <li
-                key={`${post.date}-${post.title}`}
-                className={`flex gap-3${index === 0 ? "" : " blur-[3px] opacity-60"}`}
-              >
+              <li key={`${post.date}-${post.title}`} className={getPostListItemClassName(post)}>
                 <span className="w-[88px] shrink-0 tabular-nums text-muted-foreground">{post.date}</span>
-                <Link className={textLinkClass} href={getPostHref(post)}>
-                  {post.title}
-                </Link>
+                {index === 0 && "slug" in post && post.slug ? (
+                  <LatestPostLink href={getPostHref(post)} slug={post.slug}>
+                    {post.title}
+                  </LatestPostLink>
+                ) : (
+                  <Link className={textLinkClass} href={getPostHref(post)}>
+                    {post.title}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>

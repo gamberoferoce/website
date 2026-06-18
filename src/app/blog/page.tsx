@@ -3,8 +3,9 @@ import { PageTitle } from "@/components/PageTitle";
 import { SitePage } from "@/components/SitePage";
 import { SiteNav } from "@/components/SiteNav";
 import { textLinkClass } from "@/lib/interactive";
-import { getPostHref, posts } from "@/lib/posts";
+import { getPostHref, getPostsForDisplay, getPostListItemClassName } from "@/lib/posts";
 export default function BlogPage() {
+  const posts = getPostsForDisplay();
   return (
     <SitePage>
       <SiteNav />
@@ -15,7 +16,7 @@ export default function BlogPage() {
           {posts.map((post, index) => (
             <li
               key={`${post.date}-${post.title}`}
-              className={`flex gap-3${index === 0 ? " relative" : " blur-[3px] opacity-60"}`}
+              className={getPostListItemClassName(post, index === 0 ? " relative" : "")}
             >
               {index === 0 ? (
                 <span className="absolute top-0 right-full mr-3 shrink-0 font-bold uppercase">NEW</span>

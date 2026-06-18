@@ -25,13 +25,7 @@
 
 .contactLink:hover .label {
   text-decoration: none;
-  background-image: var(--rainbow-gradient-loop);
-  background-size: 200% 100%;
-  background-repeat: repeat;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: contact-rainbow-scroll 2.5s linear infinite;
+  color: inherit;
 }
 
 .contactLink:hover .label::after {
@@ -47,12 +41,11 @@
   animation: contact-rainbow-scroll 2.5s linear infinite;
 }
 
-.contactLink:not(:hover) .label {
-  background: none;
-  -webkit-text-fill-color: currentcolor;
-  color: inherit;
-}
-
 .contactLink:not(:hover) .label::after {
   content: none;
+}
+
+.active:not(:hover) .label {
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }

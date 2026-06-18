@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { PageTitle } from "@/components/PageTitle";
+import { PostEngagementTracker } from "@/components/PostEngagementTracker";
 import { SitePage } from "@/components/SitePage";
 import { SiteNav } from "@/components/SiteNav";
 import { getPostBySlug, publishedPosts } from "@/lib/posts";
@@ -24,6 +25,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <SitePage>
+      <PostEngagementTracker slug={slug} />
       <SiteNav />
 
       <div className="space-y-3 pt-16 md:pt-20">

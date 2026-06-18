@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ContactNavLink } from "@/components/ContactNavLink";
-import { headerNavLinkClass } from "@/lib/interactive";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import { headerNavLinkActiveClass, headerNavLinkClass } from "@/lib/interactive";
 import { cn } from "@/lib/utils";
 
 const navItems = [
@@ -12,6 +13,10 @@ const navItems = [
 ] as const;
 
 const navTextClass = "text-[15px] leading-5 font-normal";
+
+function isNavItemActive(pathname: string, href: string) {
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
 
 export function SiteNav() {
   const pathname = usePathname();
@@ -27,16 +32,25 @@ export function SiteNav() {
         </Link>
 
         <div className={`flex items-center gap-3.5 ${navTextClass}`}>
-          {navItems.map((item) => (
+          {navItems.map((item) => {
+            const isActive = isNavItemActive(pathname, item.href);
+
+            return (
               <Link
                 key={item.href}
-                className={cn(navTextClass, headerNavLinkClass)}
+                className={cn(
+                  navTextClass,
+                  headerNavLinkClass,
+                  isActive && headerNavLinkActiveClass,
+                )}
                 href={item.href}
               >
                 {item.label}
               </Link>
-            ))}
+            );
+          })}
           <ContactNavLink isActive={pathname === "/contact"} />
+          <ThemeToggle />
         </div>
       </div>
 
