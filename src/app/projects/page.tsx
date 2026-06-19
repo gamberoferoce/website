@@ -1,13 +1,8 @@
-import Link from "next/link";
 import { PageTitle } from "@/components/PageTitle";
+import { ProjectCard } from "@/components/ProjectCard";
 import { SitePage } from "@/components/SitePage";
 import { SiteNav } from "@/components/SiteNav";
-import { textLinkClass } from "@/lib/interactive";
-import {
-  getProjectHref,
-  getProjectListItemClassName,
-  getProjectsForDisplay,
-} from "@/lib/projects";
+import { getProjectsForDisplay } from "@/lib/projects";
 
 export default function ProjectsPage() {
   const projects = getProjectsForDisplay();
@@ -16,21 +11,12 @@ export default function ProjectsPage() {
     <SitePage>
       <SiteNav />
 
-      <div className="space-y-3 pt-16 md:pt-20">
+      <div className="space-y-5 pt-16 md:pt-20">
         <PageTitle>Projects</PageTitle>
 
-        <ul className="space-y-2 text-[14px] text-foreground/90">
+        <ul className="grid grid-cols-1 gap-5 sm:grid-cols-2">
           {projects.map((project) => (
-            <li key={project.title} className={getProjectListItemClassName(project)}>
-              {project.slug ? (
-                <Link className={textLinkClass} href={getProjectHref(project)}>
-                  {project.title}
-                </Link>
-              ) : (
-                <span className="underline underline-offset-4">{project.title}</span>
-              )}
-              <p className="text-muted-foreground">{project.description}</p>
-            </li>
+            <ProjectCard key={project.title} project={project} />
           ))}
         </ul>
       </div>

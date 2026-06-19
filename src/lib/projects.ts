@@ -2,6 +2,8 @@ export type ProjectListItem = {
   slug?: string;
   title: string;
   description: string;
+  image?: string;
+  imageAlt?: string;
   /** When set, overrides the default blur rule (no slug = placeholder). */
   blurred?: boolean;
 };
@@ -67,17 +69,23 @@ export function getProjectsForDisplay(): ProjectListItem[] {
   return [...projects].toReversed();
 }
 
+/** Toggle off while designing the projects layout. */
+const PROJECT_BLUR_ENABLED = false;
+
 /** Placeholders without a slug stay blurred unless `blurred` is set explicitly. */
 export function isProjectBlurred(project: ProjectListItem): boolean {
+  if (!PROJECT_BLUR_ENABLED) {
+    return false;
+  }
   if (project.blurred !== undefined) {
     return project.blurred;
   }
   return !project.slug;
 }
 
-export function getProjectListItemClassName(project: ProjectListItem, extra?: string): string {
+export function getProjectCardClassName(project: ProjectListItem, extra?: string): string {
   const blur = isProjectBlurred(project) ? " blur-[3px] opacity-60" : "";
-  return `space-y-0.5${extra ?? ""}${blur}`;
+  return `group${extra ?? ""}${blur}`;
 }
 
 export function getProjectBySlug(slug: string): PublishedProject | undefined {
