@@ -11,6 +11,7 @@ import {
   getCanvasPoint,
   getElementCanvasX,
   getSiteCanvasInner,
+  getSiteCanvasScale,
 } from "@/lib/site-canvas";
 
 type RopePoint = {
@@ -159,8 +160,9 @@ export function LightPullCord() {
       return;
     }
 
+    const scale = getSiteCanvasScale(canvas);
     const anchorX = getElementCanvasX(mountRef.current, canvas);
-    setCordLeft(anchorX);
+    setCordLeft(anchorX * scale);
     anchorRef.current = { x: anchorX, y: 2 };
   }, []);
 

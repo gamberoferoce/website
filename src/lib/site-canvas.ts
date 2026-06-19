@@ -1,4 +1,4 @@
-/** Fixed layout canvas width; scaled down only on narrower viewports. */
+/** Design reference width; layout is fluid up to this max. */
 export const SITE_CANVAS_WIDTH = 640;
 
 export const SITE_CANVAS_INNER_SELECTOR = "[data-site-canvas-inner]";

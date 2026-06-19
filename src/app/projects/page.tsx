@@ -22,7 +22,7 @@ export default function ProjectsPage() {
             ))}
           </ul>
 
-          <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-[520px] md:h-[640px]">
+          <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-[min(520px,75vh)] md:h-[640px]">
             <ComingSoonMarquee />
           </div>
         </div>

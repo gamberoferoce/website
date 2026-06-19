@@ -14,7 +14,7 @@ type LatestPostLinkProps = {
 export function LatestPostLink({ href, slug, children }: LatestPostLinkProps) {
   return (
     <Link
-      className={textLinkClass}
+      className={`${textLinkClass} min-w-0 break-words`}
       href={href}
       onClick={() => trackUmamiEvent("click-latest-post", { slug })}
     >

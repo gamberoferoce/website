@@ -312,7 +312,7 @@ export function isPostBlurred(post: PostListItem): boolean {
 
 export function getPostListItemClassName(post: PostListItem, extra?: string): string {
   const blur = isPostBlurred(post) ? " blur-[3px] opacity-60" : "";
-  return `flex gap-3${extra ?? ""}${blur}`;
+  return `flex min-w-0 flex-col gap-0.5 sm:flex-row sm:gap-3${extra ?? ""}${blur}`;
 }
 
 export function getPostBySlug(slug: string): PublishedPost | undefined {

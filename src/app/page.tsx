@@ -80,7 +80,7 @@ export default function Home() {
                 className={getPostListItemClassName(post, index === 0 ? " relative" : "")}
               >
                 {index === 0 ? (
-                  <span className="absolute top-0 right-full mr-3 shrink-0 font-bold uppercase">NEW</span>
+                  <span className="shrink-0 font-bold uppercase sm:absolute sm:top-0 sm:right-full sm:mr-3">NEW</span>
                 ) : null}
                 <span className="w-[88px] shrink-0 tabular-nums text-muted-foreground">{post.date}</span>
                 {index === 0 && "slug" in post && post.slug ? (
@@ -88,7 +88,7 @@ export default function Home() {
                     {post.title}
                   </LatestPostLink>
                 ) : (
-                  <Link className={textLinkClass} href={getPostHref(post)}>
+                  <Link className={`${textLinkClass} min-w-0 break-words`} href={getPostHref(post)}>
                     {post.title}
                   </Link>
                 )}
