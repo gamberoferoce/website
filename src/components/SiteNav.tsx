@@ -23,15 +23,17 @@ export function SiteNav() {
 
   return (
     <nav className="text-foreground/90">
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex items-start justify-between gap-3 sm:items-center">
         <Link
-          className="text-[20px] font-bold leading-none sm:text-[24px]"
+          className="shrink-0 text-[20px] font-bold leading-none sm:text-[24px]"
           href="/"
         >
           Giulia Fanasca
         </Link>
 
-        <div className={`flex flex-wrap items-center gap-x-3 gap-y-1 sm:gap-x-3.5 ${navTextClass}`}>
+        <div
+          className={`flex flex-wrap items-center justify-end gap-x-3 gap-y-1 sm:gap-x-3.5 ${navTextClass}`}
+        >
           {navItems.map((item) => {
             const isActive = isNavItemActive(pathname, item.href);
 
