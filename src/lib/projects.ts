@@ -80,14 +80,8 @@ export function getProjectsGalleryRows(rowCount = PROJECT_GALLERY_ROW_COUNT): Pr
   return rows;
 }
 
-/** Toggle off while designing the projects layout. */
-const PROJECT_BLUR_ENABLED = false;
-
 /** Placeholders without a slug stay blurred unless `blurred` is set explicitly. */
 export function isProjectBlurred(project: ProjectListItem): boolean {
-  if (!PROJECT_BLUR_ENABLED) {
-    return false;
-  }
   if (project.blurred !== undefined) {
     return project.blurred;
   }
