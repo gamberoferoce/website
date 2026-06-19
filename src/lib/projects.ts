@@ -22,43 +22,40 @@ export const publishedProjects: readonly PublishedProject[] = [];
 
 const placeholderProjects = [
   {
-    title: "laravel-tfa-confirmation",
-    description: "Protect sensitive routes or actions with a two-factor challenge",
+    title: "Moisture-Powered Keyboard",
+    description: "Types only when room humidity exceeds 82%. Caps Lock is governed by dew point.",
   },
   {
-    title: "laravel-backup-restore",
-    description: "A package to restore database backups made with spatie/laravel-backup.",
+    title: "Reverse PDF",
+    description: "Converts any document back into a tree. Currently supports oak, birch, and mild panic.",
   },
   {
-    title: "git-auto-commit-action",
-    description: "GitHub Action to automatically commit changed files back to the repository.",
+    title: "Git Blame, But Audible",
+    description: "Every commit plays a tiny trumpet solo. Merge conflicts sound like two kazoos arguing.",
   },
   {
-    title: "sidecar-browsershot",
-    description: "A Sidecar function to run Laravel Browsershot / Puppeteer on AWS Lambda.",
+    title: "Cloud Toaster API",
+    description: "REST endpoint that browns bread based on lunar phase. Webhook fires when the crust achieves enlightenment.",
   },
   {
-    title: "changelog-updater-action",
-    description:
-      'A GitHub Action to automatically update a "Keep a Changelog" CHANGELOG with the latest release notes.',
+    title: "Semicolon Insurance",
+    description: "SaaS product that underwrites your JavaScript style choices. Premium tier covers optional chaining regret.",
   },
   {
-    title: "commonmark-markdown-renderer",
-    description: "PHP package to render a league/commonmark AST back to Markdown.",
+    title: "Infinite Loading Spinner",
+    description: "A performance art piece disguised as a UI component. Users report feeling productive anyway.",
   },
   {
-    title: "laravel-sends",
-    description:
-      "Laravel package to keep track of outgoing emails and associate sent emails with Eloquent models.",
+    title: "Email for Pigeons",
+    description: "SMTP over breadcrumbs. Delivery time: 3–14 business pigeons, weather permitting.",
   },
   {
-    title: "3.screeenly.com",
-    description:
-      "Software to create screenshots or PDFs from websites or your own HTML code. It's the successor of screeenly.com.",
+    title: "404: Project Not Found",
+    description: "This card is a placeholder wearing a fake mustache. The real project is hiding behind the couch.",
   },
   {
-    title: "laravel-stats",
-    description: "Artisan command to get insights about a Laravel Project.",
+    title: "Quantum Snooze Button",
+    description: "Alarm exists in superposition until observed. You are always late in at least one timeline.",
   },
 ] as const satisfies readonly ProjectListItem[];
 
@@ -67,6 +64,20 @@ export const projects = [...placeholderProjects, ...publishedProjects] as const 
 
 export function getProjectsForDisplay(): ProjectListItem[] {
   return [...projects].toReversed();
+}
+
+export const PROJECT_GALLERY_ROW_COUNT = 3;
+
+/** Distributes projects round-robin into horizontal gallery rows. */
+export function getProjectsGalleryRows(rowCount = PROJECT_GALLERY_ROW_COUNT): ProjectListItem[][] {
+  const items = getProjectsForDisplay();
+  const rows = Array.from({ length: rowCount }, () => [] as ProjectListItem[]);
+
+  items.forEach((project, index) => {
+    rows[index % rowCount].push(project);
+  });
+
+  return rows;
 }
 
 /** Toggle off while designing the projects layout. */
@@ -81,6 +92,11 @@ export function isProjectBlurred(project: ProjectListItem): boolean {
     return project.blurred;
   }
   return !project.slug;
+}
+
+export function getProjectListItemClassName(project: ProjectListItem, extra?: string): string {
+  const blur = isProjectBlurred(project) ? " blur-[3px] opacity-60" : "";
+  return `space-y-0.5${extra ?? ""}${blur}`;
 }
 
 export function getProjectCardClassName(project: ProjectListItem, extra?: string): string {

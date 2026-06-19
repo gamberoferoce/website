@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { LatestPostLink } from "@/components/LatestPostLink";
-import { PageTitle } from "@/components/PageTitle";
 import { SitePage } from "@/components/SitePage";
 import { SiteNav } from "@/components/SiteNav";
 import { accentTextLinkClass, textLinkClass } from "@/lib/interactive";
@@ -22,21 +21,8 @@ export default function Home() {
       <div id="content">
         <SiteNav />
 
-        <div className="space-y-12">
-          <header className="pt-16 md:pt-20">
-            <div className="relative">
-              <div className="avatar-placeholder absolute bottom-full left-0 mb-2 h-8 w-8 rounded-[6px] shadow-sm" />
-
-              <div className="space-y-0.5">
-                <PageTitle>Giulia Fanasca</PageTitle>
-                <p className="text-[15px] leading-5 text-muted-foreground">Creative Technologist</p>
-              </div>
-            </div>
-          </header>
-
-
-
-        <section className="space-y-5 text-[14px] leading-6 text-foreground/80">
+        <div className="space-y-12 pt-16 md:pt-20">
+          <section className="space-y-5 text-[14px] leading-6 text-foreground/80">
           <p>
             Building interactive experiences through{" "}
             <a className={accentTextLinkClass} href="#">
@@ -87,9 +73,15 @@ export default function Home() {
 
           <h3 className="text-[15px] font-semibold leading-5 text-foreground/90">Latest post</h3>
 
-          <ul className="space-y-2 text-[14px] text-foreground/90">
+          <ul className="space-y-2 overflow-visible text-[14px] text-foreground/90">
             {latestPosts.map((post, index) => (
-              <li key={`${post.date}-${post.title}`} className={getPostListItemClassName(post)}>
+              <li
+                key={`${post.date}-${post.title}`}
+                className={getPostListItemClassName(post, index === 0 ? " relative" : "")}
+              >
+                {index === 0 ? (
+                  <span className="absolute top-0 right-full mr-3 shrink-0 font-bold uppercase">NEW</span>
+                ) : null}
                 <span className="w-[88px] shrink-0 tabular-nums text-muted-foreground">{post.date}</span>
                 {index === 0 && "slug" in post && post.slug ? (
                   <LatestPostLink href={getPostHref(post)} slug={post.slug}>

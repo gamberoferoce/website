@@ -7,6 +7,11 @@ import {
   subscribeTheme,
   type Theme,
 } from "@/lib/theme";
+import {
+  getCanvasPoint,
+  getElementCanvasX,
+  getSiteCanvasInner,
+} from "@/lib/site-canvas";
 
 type RopePoint = {
   x: number;
@@ -143,13 +148,32 @@ export function LightPullCord() {
 
   const updateAnchor = useCallback(() => {
     if (!mountRef.current) return;
-    const rect = mountRef.current.getBoundingClientRect();
-    const anchorX = rect.left + rect.width / 2;
+
+    const canvas = getSiteCanvasInner(mountRef.current);
+
+    if (!canvas) {
+      const rect = mountRef.current.getBoundingClientRect();
+      const anchorX = rect.left + rect.width / 2;
+      setCordLeft(anchorX);
+      anchorRef.current = { x: anchorX, y: 2 };
+      return;
+    }
+
+    const anchorX = getElementCanvasX(mountRef.current, canvas);
     setCordLeft(anchorX);
-    anchorRef.current = {
-      x: anchorX,
-      y: 2,
-    };
+    anchorRef.current = { x: anchorX, y: 2 };
+  }, []);
+
+  const setPointerFromClient = useCallback((clientX: number, clientY: number) => {
+    const canvas = getSiteCanvasInner(mountRef.current);
+
+    if (!canvas) {
+      pointerRef.current = { x: clientX, y: clientY, active: true };
+      return;
+    }
+
+    const point = getCanvasPoint(clientX, clientY, canvas);
+    pointerRef.current = { x: point.x, y: point.y, active: true };
   }, []);
 
   const integratePoints = useCallback((points: RopePoint[]) => {
@@ -270,14 +294,14 @@ export function LightPullCord() {
     if (!mounted || reducedMotion) return;
 
     const onPointerMove = (event: PointerEvent) => {
-      pointerRef.current = { x: event.clientX, y: event.clientY, active: true };
+      setPointerFromClient(event.clientX, event.clientY);
       updateAnchor();
 
       if (!draggingRef.current) return;
 
       simulateRope({
-        x: event.clientX - anchorRef.current.x,
-        y: event.clientY - anchorRef.current.y,
+        x: pointerRef.current.x - anchorRef.current.x,
+        y: pointerRef.current.y - anchorRef.current.y,
       });
     };
 
@@ -304,13 +328,14 @@ export function LightPullCord() {
       window.removeEventListener("pointerup", onPointerUp);
       window.removeEventListener("pointercancel", onPointerUp);
     };
-  }, [mounted, reducedMotion, simulateRope, toggleTheme, updateAnchor]);
+  }, [mounted, reducedMotion, simulateRope, toggleTheme, updateAnchor, setPointerFromClient]);
 
   const onHandlePointerDown = (event: React.PointerEvent<HTMLButtonElement>) => {
     if (reducedMotion) return;
     event.preventDefault();
     draggingRef.current = true;
-    pointerRef.current = { x: event.clientX, y: event.clientY, active: true };
+    pointerRef.current = { x: 0, y: 0, active: true };
+    setPointerFromClient(event.clientX, event.clientY);
     updateAnchor();
     handleRef.current?.setPointerCapture(event.pointerId);
   };
@@ -330,7 +355,7 @@ export function LightPullCord() {
       {mounted ? (
       <div
         ref={rootRef}
-        className="light-pull-cord fixed top-0 z-[60] -translate-x-1/2"
+        className="light-pull-cord absolute top-0 z-[60] -translate-x-1/2"
         style={{ left: cordLeft }}
       >
         <div className="light-pull-cord__stage">
