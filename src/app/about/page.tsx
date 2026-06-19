@@ -1,6 +1,14 @@
 import { PageTitle } from "@/components/PageTitle";
 import { SitePage } from "@/components/SitePage";
 import { SiteNav } from "@/components/SiteNav";
+import { createPageMetadata } from "@/lib/seo";
+
+export const metadata = createPageMetadata({
+  title: "About",
+  description:
+    "About Giulia Fanasca — creative technologist building interactive experiences through XR, real-time 3D, and HCI.",
+  path: "/about",
+});
 
 export default function AboutPage() {
   return (

@@ -318,3 +318,23 @@ export function getPostBySlug(slug: string): PublishedPost | undefined {
 export function getPostHref(post: PostListItem) {
   return post.slug ? `/blog/${post.slug}` : "#";
 }
+
+export function getPostExcerpt(post: PublishedPost, maxLength = 160): string {
+  const firstParagraph = post.content.find((block) => block.type === "paragraph");
+
+  if (!firstParagraph || firstParagraph.type !== "paragraph") {
+    return post.title;
+  }
+
+  const text = firstParagraph.text;
+  if (text.length <= maxLength) {
+    return text;
+  }
+
+  return `${text.slice(0, maxLength - 1).trimEnd()}…`;
+}
+
+export function getPostIsoDate(date: string): string {
+  const [day, month, year] = date.split("/").map(Number);
+  return new Date(Date.UTC(year, month - 1, day)).toISOString();
+}

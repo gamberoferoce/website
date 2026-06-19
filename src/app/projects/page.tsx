@@ -4,6 +4,14 @@ import { ProjectCard } from "@/components/ProjectCard";
 import { SitePage } from "@/components/SitePage";
 import { SiteNav } from "@/components/SiteNav";
 import { getProjectsForDisplay } from "@/lib/projects";
+import { createPageMetadata } from "@/lib/seo";
+
+export const metadata = createPageMetadata({
+  title: "Projects",
+  description:
+    "Selected projects and experiments in XR, real-time 3D, and interactive interfaces by Giulia Fanasca.",
+  path: "/projects",
+});
 
 export default function ProjectsPage() {
   const projects = getProjectsForDisplay();

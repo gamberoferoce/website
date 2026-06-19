@@ -1,9 +1,17 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { JsonLd } from "@/components/JsonLd";
 import { PageTitle } from "@/components/PageTitle";
 import { PostEngagementTracker } from "@/components/PostEngagementTracker";
 import { SitePage } from "@/components/SitePage";
 import { SiteNav } from "@/components/SiteNav";
-import { getPostBySlug, publishedPosts } from "@/lib/posts";
+import {
+  getPostBySlug,
+  getPostExcerpt,
+  getPostIsoDate,
+  publishedPosts,
+} from "@/lib/posts";
+import { createBlogPostingSchema, createPageMetadata } from "@/lib/seo";
 
 type BlogPostPageProps = {
   params: Promise<{
@@ -15,6 +23,23 @@ export function generateStaticParams() {
   return publishedPosts.map((post) => ({ slug: post.slug }));
 }
 
+export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
+
+  if (!post) {
+    return {};
+  }
+
+  return createPageMetadata({
+    title: post.title,
+    description: getPostExcerpt(post),
+    path: `/blog/${slug}`,
+    type: "article",
+    publishedTime: getPostIsoDate(post.date),
+  });
+}
+
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
   const post = getPostBySlug(slug);
@@ -23,8 +48,18 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     notFound();
   }
 
+  const excerpt = getPostExcerpt(post);
+
   return (
     <SitePage>
+      <JsonLd
+        data={createBlogPostingSchema({
+          title: post.title,
+          slug: post.slug,
+          datePublished: getPostIsoDate(post.date),
+          description: excerpt,
+        })}
+      />
       <PostEngagementTracker slug={slug} />
       <SiteNav />
 

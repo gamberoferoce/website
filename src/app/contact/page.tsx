@@ -2,6 +2,13 @@ import { ContactForm } from "@/components/ContactForm";
 import { PageTitle } from "@/components/PageTitle";
 import { SitePage } from "@/components/SitePage";
 import { SiteNav } from "@/components/SiteNav";
+import { createPageMetadata } from "@/lib/seo";
+
+export const metadata = createPageMetadata({
+  title: "Contact",
+  description: "Get in touch with Giulia Fanasca for collaboration, projects, and creative technology work.",
+  path: "/contact",
+});
 
 export default function ContactPage() {
   return (

@@ -4,6 +4,12 @@ import { SitePage } from "@/components/SitePage";
 import { SiteNav } from "@/components/SiteNav";
 import { accentTextLinkClass, textLinkClass } from "@/lib/interactive";
 import { getLatestPosts, getPostHref, getPostListItemClassName } from "@/lib/posts";
+import { createPageMetadata, SITE_DESCRIPTION } from "@/lib/seo";
+
+export const metadata = createPageMetadata({
+  description: SITE_DESCRIPTION,
+  path: "/",
+});
 export default function Home() {
   const latestPosts = getLatestPosts(4);
 

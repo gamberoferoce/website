@@ -1,8 +1,14 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
+import { JsonLd } from "@/components/JsonLd";
 import { UmamiAnalytics } from "@/components/UmamiAnalytics";
 import { UmamiEngagement } from "@/components/UmamiEngagement";
+import {
+  createPersonSchema,
+  createRootMetadata,
+  createWebsiteSchema,
+} from "@/lib/seo";
 import { themeInitScript } from "@/lib/theme";
 import "./globals.css";
 
@@ -16,10 +22,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Giulia Fanasca • Creative Technologist",
-  description: "Creative Technologist",
-};
+export const metadata: Metadata = createRootMetadata();
 
 export default function RootLayout({
   children,
@@ -38,6 +41,8 @@ export default function RootLayout({
         {themeInitScript}
       </Script>
       <body className="min-h-full flex flex-col">
+        <JsonLd data={createWebsiteSchema()} />
+        <JsonLd data={createPersonSchema()} />
         <div aria-hidden className="pointer-events-none fixed inset-x-0 top-0 z-50">
           {/* crisp line */}
           <div className="h-[2px] w-full opacity-70" style={{ backgroundImage: rainbowGradient }} />

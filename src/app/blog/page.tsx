@@ -4,6 +4,14 @@ import { SitePage } from "@/components/SitePage";
 import { SiteNav } from "@/components/SiteNav";
 import { textLinkClass } from "@/lib/interactive";
 import { getPostHref, getPostsForDisplay, getPostListItemClassName } from "@/lib/posts";
+import { createPageMetadata } from "@/lib/seo";
+
+export const metadata = createPageMetadata({
+  title: "Blog",
+  description:
+    "Essays and notes on emerging technology, HCI, design metaphors, skeuomorphism, and interactive prototypes.",
+  path: "/blog",
+});
 export default function BlogPage() {
   const posts = getPostsForDisplay();
   return (
