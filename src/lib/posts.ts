@@ -162,10 +162,6 @@ export const publishedPosts = [
     content: [
       {
         type: "paragraph",
-        text: "The document metaphor was the right path to choose. But was it inevitable?",
-      },
-      {
-        type: "paragraph",
         text: "The page was skeuomorphism before we had a word for it. We called it realism, then flat design, then convinced ourselves we had moved on. We hadn't, the filing cabinet just stopped looking like wood.",
       },
       {
