@@ -1,10 +1,11 @@
 import Link from "next/link";
+import { JsonLd } from "@/components/JsonLd";
 import { PageTitle } from "@/components/PageTitle";
 import { SitePage } from "@/components/SitePage";
 import { SiteNav } from "@/components/SiteNav";
 import { textLinkClass } from "@/lib/interactive";
 import { getPostHref, getPostsForDisplay, getPostListItemClassName } from "@/lib/posts";
-import { createPageMetadata } from "@/lib/seo";
+import { createBlogSchema, createPageMetadata } from "@/lib/seo";
 
 export const metadata = createPageMetadata({
   title: "Blog",
@@ -16,6 +17,7 @@ export default function BlogPage() {
   const posts = getPostsForDisplay();
   return (
     <SitePage>
+      <JsonLd data={createBlogSchema()} />
       <SiteNav />
 
       <div className="space-y-3 pt-16 md:pt-20">

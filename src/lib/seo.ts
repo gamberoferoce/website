@@ -162,3 +162,19 @@ export function createBlogPostingSchema(post: {
     inLanguage: SITE_LOCALE,
   };
 }
+
+export function createBlogSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    name: `${SITE_NAME} Blog`,
+    description: "Essays on emerging technology, HCI, design metaphors, and interactive prototypes.",
+    url: absoluteUrl("/blog"),
+    author: {
+      "@type": "Person",
+      name: SITE_NAME,
+      url: getSiteUrl(),
+    },
+    inLanguage: SITE_LOCALE,
+  };
+}
