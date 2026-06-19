@@ -1,9 +1,12 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
-import { applyTheme, getPreferredTheme, THEME_STORAGE_KEY } from "@/lib/theme";
-
-type Theme = "light" | "dark";
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
+import {
+  getThemeSnapshot,
+  persistTheme,
+  subscribeTheme,
+  type Theme,
+} from "@/lib/theme";
 
 type RopePoint = {
   x: number;
@@ -82,9 +85,17 @@ function buildPath(points: readonly RopePoint[]) {
 }
 
 export function LightPullCord() {
-  const [theme, setTheme] = useState<Theme>("light");
-  const [mounted, setMounted] = useState(false);
-  const [reducedMotion, setReducedMotion] = useState(false);
+  const theme = useSyncExternalStore(subscribeTheme, getThemeSnapshot, () => "light");
+  const mounted = useSyncExternalStore(() => () => {}, () => true, () => false);
+  const reducedMotion = useSyncExternalStore(
+    (onChange) => {
+      const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+      media.addEventListener("change", onChange);
+      return () => media.removeEventListener("change", onChange);
+    },
+    () => window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+    () => false,
+  );
 
   const rootRef = useRef<HTMLDivElement>(null);
   const mountRef = useRef<HTMLDivElement>(null);
@@ -101,24 +112,15 @@ export function LightPullCord() {
   const pullRef = useRef(0);
   const rafRef = useRef(0);
 
-  const themeRef = useRef<Theme>("light");
-  themeRef.current = theme;
-
-  const setThemeAndPersist = useCallback((next: Theme) => {
-    applyTheme(next);
-    localStorage.setItem(THEME_STORAGE_KEY, next);
-    setTheme(next);
-  }, []);
-
   const toggleTheme = useCallback(() => {
-    const next: Theme = themeRef.current === "light" ? "dark" : "light";
-    setThemeAndPersist(next);
+    const next: Theme = getThemeSnapshot() === "light" ? "dark" : "light";
+    persistTheme(next);
 
     const points = pointsRef.current;
     for (let index = Math.max(1, points.length - 4); index < points.length; index += 1) {
       points[index].py -= 1.2 + (index - points.length + 4) * 0.6;
     }
-  }, [setThemeAndPersist]);
+  }, []);
 
   const applyVisuals = useCallback((points: readonly RopePoint[]) => {
     const tip = points[points.length - 1];
@@ -228,12 +230,6 @@ export function LightPullCord() {
     [applyVisuals, integratePoints],
   );
   useEffect(() => {
-    const initial = getPreferredTheme();
-    applyTheme(initial);
-    setTheme(initial);
-    setMounted(true);
-    setReducedMotion(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
-
     window.addEventListener("resize", updateAnchor);
     window.addEventListener("scroll", updateAnchor, { passive: true });
 
